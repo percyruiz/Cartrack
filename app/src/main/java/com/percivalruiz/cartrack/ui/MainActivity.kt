@@ -1,7 +1,8 @@
-package com.percivalruiz.cartrack
+package com.percivalruiz.cartrack.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.percivalruiz.cartrack.R
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
