@@ -1,5 +1,6 @@
 package com.percivalruiz.cartrack.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.percivalruiz.cartrack.data.Result
 import com.percivalruiz.cartrack.databinding.ActivityLoginBinding
+import com.percivalruiz.cartrack.ui.list.MainActivity
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -42,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
     // Observe if login button should be enabled
     lifecycleScope.launchWhenStarted {
       viewModel.isLoginButtonEnabled.collect {
-        binding.loginButton.isEnabled  = it
+        binding.loginButton.isEnabled = it
       }
     }
 
@@ -52,7 +54,9 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginUserFlow.collect {
           when (it.status) {
             Result.Status.SUCCESS -> {
-              Log.d("test", "success")
+              viewModel.setAsLogin()
+              startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+              finish()
             }
             Result.Status.ERROR -> {
               Log.d("test", it.message.toString())
