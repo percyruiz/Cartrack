@@ -74,4 +74,18 @@ class LoginViewModelTest {
 
     underTest.loginUserFlow.asLiveData().test().assertValue(result)
   }
+
+  @Test
+  fun `Should be able to handle login button state not enabled`() = runBlockingTest {
+    underTest.setUsername("")
+    underTest.setUsername("  ")
+    underTest.isLoginButtonEnabled.asLiveData().test().assertValue(false)
+  }
+
+  @Test
+  fun `Should be able to handle login button state enabled`() = runBlockingTest {
+    underTest.setUsername("username")
+    underTest.setUsername("password")
+    underTest.isLoginButtonEnabled.asLiveData().test().assertValue(false)
+  }
 }

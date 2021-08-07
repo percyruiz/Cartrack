@@ -25,6 +25,15 @@ class LoginViewModel(
   private val _loginUserFlow = Channel<Result<Account>>(Channel.BUFFERED)
   val loginUserFlow = _loginUserFlow.receiveAsFlow()
 
+  private val _username = MutableStateFlow("")
+  private val _password = MutableStateFlow("")
+
+  val isLoginButtonEnabled: Flow<Boolean> = combine(_username, _password) { username, password ->
+    val isUsernameValid = username.isNotBlank()
+    val isPasswordValid = password.isNotBlank()
+    return@combine isUsernameValid and isPasswordValid
+  }
+
   @InternalCoroutinesApi
   fun login(username: String, password: String) {
     viewModelScope.launch(dispatcher) {
@@ -37,4 +46,13 @@ class LoginViewModel(
         }
     }
   }
+
+  fun setUsername(username: String) {
+    _username.value = username
+  }
+
+  fun setPassword(password: String) {
+    _password.value = password
+  }
+
 }
