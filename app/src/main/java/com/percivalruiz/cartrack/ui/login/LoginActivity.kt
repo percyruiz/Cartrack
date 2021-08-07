@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -26,8 +27,23 @@ class LoginActivity : AppCompatActivity() {
     val view = binding.root
     setContentView(view)
 
+    binding.username.addTextChangedListener {
+      viewModel.setUsername(it.toString())
+    }
+
+    binding.password.addTextChangedListener {
+      viewModel.setPassword(it.toString())
+    }
+
     binding.loginButton.setOnClickListener {
       viewModel.login(binding.username.text.toString(), binding.password.text.toString())
+    }
+
+    // Observe if login button should be enabled
+    lifecycleScope.launchWhenStarted {
+      viewModel.isLoginButtonEnabled.collect {
+        binding.loginButton.isEnabled  = it
+      }
     }
 
     // Observe result of login
