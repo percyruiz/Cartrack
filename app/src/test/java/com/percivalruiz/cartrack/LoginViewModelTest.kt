@@ -6,6 +6,7 @@ import com.jraska.livedata.test
 import com.percivalruiz.cartrack.data.Account
 import com.percivalruiz.cartrack.data.Result
 import com.percivalruiz.cartrack.repository.LoginRepository
+import com.percivalruiz.cartrack.repository.LoginStateRepository
 import com.percivalruiz.cartrack.ui.login.LoginViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -36,13 +37,16 @@ class LoginViewModelTest {
   @MockK
   private lateinit var repository: LoginRepository
 
+  @MockK
+  private lateinit var loginStateRepo: LoginStateRepository
+
   private val account = Account(1,"username", "password")
 
   @Before
   fun setup() {
     MockKAnnotations.init(this)
     Dispatchers.setMain(dispatcher)
-    underTest = LoginViewModel(repository, dispatcher)
+    underTest = LoginViewModel(repository, loginStateRepo, dispatcher)
   }
 
   @After
