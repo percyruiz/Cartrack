@@ -20,9 +20,11 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".ui.login.LoginActivity"/>
+    <activity android:name=".ui.login.LoginActivity" />
 
-    <activity android:name=".ui.list.MainActivity"/>
+    <activity
+        android:name=".ui.user.MainActivity"
+        android:theme="@style/Theme.Cartrack.NoActionBar" />
   </application>
 
 </manifest>

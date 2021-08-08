@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.percivalruiz.cartrack.data.Result
 import com.percivalruiz.cartrack.databinding.ActivityLoginBinding
-import com.percivalruiz.cartrack.ui.list.MainActivity
+import com.percivalruiz.cartrack.ui.user.MainActivity
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
