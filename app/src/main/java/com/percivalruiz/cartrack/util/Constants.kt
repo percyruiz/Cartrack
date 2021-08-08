@@ -1,3 +1,3 @@
 package com.percivalruiz.cartrack.util
 
-const val NETWORK_ITEM_SIZE = 5
+const val NETWORK_ITEM_SIZE = 10

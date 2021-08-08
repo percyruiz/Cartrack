@@ -84,7 +84,7 @@ val appModule = module {
   }
 
   single<UserRepository> {
-    UserRepositoryImpl(service = get())
+    UserRepositoryImpl(service = get(), db = get())
   }
 
   // -- ViewModel --
@@ -104,6 +104,7 @@ val appModule = module {
 
   viewModel {
     UserListViewModel(
+      handle = get(),
       repository = get()
     )
   }

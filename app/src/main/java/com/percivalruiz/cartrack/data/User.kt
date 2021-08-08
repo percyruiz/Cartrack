@@ -1,41 +1,49 @@
 package com.percivalruiz.cartrack.data
 
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.JsonClass
 
 /**
  * Represents response from https://jsonplaceholder.typicode.com/users?
  */
 @JsonClass(generateAdapter = true)
+@Entity(tableName = "user")
 data class User (
-  val id: Int,
+  @PrimaryKey val id: Long,
   val name: String,
   val username: String,
   val email: String,
-  val address: Address,
+  @Embedded val address: Address,
   val phone: String,
   val website: String,
-  val company: Company
+  @Embedded val company: Company
 ) {
 
   @JsonClass(generateAdapter = true)
+  @Entity(tableName = "address")
   data class Address (
     val street: String,
     val suite: String,
     val city: String,
     val zipcode: String,
-    val geo: Geo
+    @Embedded val geo: Geo
   ) {
 
     @JsonClass(generateAdapter = true)
+    @Entity(tableName = "geo")
     data class Geo (
-      val lat: Float,
-      val lng: Float
+      val lat: String,
+      val lng: String
     )
   }
 
   @JsonClass(generateAdapter = true)
+  @Entity(tableName = "company")
   data class Company (
-    val name: String,
+    @ColumnInfo(name = "company_name") val name: String,
     val catchPhrase: String,
     val bs: String
   )
