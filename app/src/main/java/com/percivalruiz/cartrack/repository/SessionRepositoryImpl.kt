@@ -7,8 +7,8 @@ import com.percivalruiz.cartrack.data.LoginStatePrefs
  *
  * @property prefs Object container for login state preferences
  */
-class LoginStateRepositoryImpl(private val prefs: LoginStatePrefs) :
-  LoginStateRepository {
+class SessionRepositoryImpl(private val prefs: LoginStatePrefs) :
+  SessionRepository {
   override fun isLoggedIn(): Boolean = prefs.isLoggedIn
 
   override fun setState(isLoggedIn: Boolean) {

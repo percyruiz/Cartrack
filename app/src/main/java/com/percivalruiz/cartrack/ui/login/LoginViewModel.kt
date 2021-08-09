@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.percivalruiz.cartrack.data.Account
 import com.percivalruiz.cartrack.data.Result
 import com.percivalruiz.cartrack.repository.LoginRepository
-import com.percivalruiz.cartrack.repository.LoginStateRepository
+import com.percivalruiz.cartrack.repository.SessionRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
  */
 class LoginViewModel(
   private val repository: LoginRepository,
-  private val loginStateRepository: LoginStateRepository,
+  private val sessionRepository: SessionRepository,
   private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
@@ -50,7 +50,7 @@ class LoginViewModel(
   }
 
   fun setAsLogin() {
-    loginStateRepository.setState(true)
+    sessionRepository.setState(true)
   }
 
   fun setUsername(username: String) {
