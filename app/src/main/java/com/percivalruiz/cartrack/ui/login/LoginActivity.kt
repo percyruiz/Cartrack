@@ -54,7 +54,9 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginUserFlow.collect {
           when (it.status) {
             Result.Status.SUCCESS -> {
-              viewModel.setAsLogin()
+              if(binding.checkBox.isChecked) {
+                viewModel.setAsLogin()
+              }
               startActivity(Intent(this@LoginActivity, MainActivity::class.java))
               finish()
             }

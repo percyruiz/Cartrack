@@ -1,6 +1,6 @@
 package com.percivalruiz.cartrack.repository
 
-interface LoginStateRepository {
+interface SessionRepository {
   fun isLoggedIn(): Boolean
   fun setState(isLoggedIn: Boolean)
 }
