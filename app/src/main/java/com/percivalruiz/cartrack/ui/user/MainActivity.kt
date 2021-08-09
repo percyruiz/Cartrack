@@ -11,6 +11,10 @@ import com.percivalruiz.cartrack.R
 import com.percivalruiz.cartrack.databinding.ActivityMainBinding
 import kotlinx.coroutines.InternalCoroutinesApi
 
+/**
+ * Screen containing user list and detail fragments
+ *
+ */
 class MainActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityMainBinding
