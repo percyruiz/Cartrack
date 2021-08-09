@@ -2,11 +2,14 @@ package com.percivalruiz.cartrack.ui.user.list
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
+import androidx.paging.insertSeparators
+import androidx.paging.map
 import com.percivalruiz.cartrack.data.User
 import com.percivalruiz.cartrack.repository.UserRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 
 /**
  * Contains logic for getting User list items
@@ -32,7 +35,17 @@ class UserListViewModel(
   @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
   val users = handle.getLiveData<Boolean>(LOAD)
     .asFlow()
-    .flatMapLatest { repository.getUsers()}
+    .flatMapLatest { repository.getUsers() }
+    .map { data -> data.map { UIModel.UserItem(it) } }
+    .map {
+      it.insertSeparators { before, after ->
+        when {
+          before == null -> null
+          after == null -> null
+          else -> UIModel.SeparatorItem("Separator: $before-$after")
+        }
+      }
+    }
     .cachedIn(viewModelScope)
 
   fun getUsers() {

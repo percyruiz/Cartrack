@@ -20,6 +20,7 @@ class UserViewHolder(
   private val name: TextView = view.findViewById(R.id.name)
   private val username: TextView = view.findViewById(R.id.username)
   private val email: TextView = view.findViewById(R.id.email)
+  private val phone: TextView = view.findViewById(R.id.phone)
 
   init {
     view.setOnClickListener {
@@ -32,6 +33,7 @@ class UserViewHolder(
       this@UserViewHolder.name.text = name
       this@UserViewHolder.username.text = username
       this@UserViewHolder.email.text = email
+      this@UserViewHolder.phone.text = phone
     }
   }
 
