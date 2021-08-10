@@ -12,6 +12,7 @@ import com.percivalruiz.cartrack.repository.*
 import com.percivalruiz.cartrack.ui.login.LoginViewModel
 import com.percivalruiz.cartrack.ui.splash.SplashViewModel
 import com.percivalruiz.cartrack.ui.user.MainViewModel
+import com.percivalruiz.cartrack.ui.user.detail.UserDetailViewModel
 import com.percivalruiz.cartrack.ui.user.list.UserListViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -112,6 +113,13 @@ val appModule = module {
 
   viewModel {
     MainViewModel(
+      repository = get()
+    )
+  }
+
+  viewModel {
+    UserDetailViewModel(
+      handle = get(),
       repository = get()
     )
   }

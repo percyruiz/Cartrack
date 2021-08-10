@@ -21,9 +21,6 @@ class UserListViewModel(
   private val repository: UserRepository,
 ) : ViewModel() {
 
-//  private val _users = Channel<PagingData<User>>(Channel.BUFFERED)
-//  val users = _users.receiveAsFlow()
-
   init {
     handle.set(LOAD, true)
   }
