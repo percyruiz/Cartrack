@@ -1,62 +1,74 @@
 package com.percivalruiz.cartrack
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.asLiveData
+import com.jraska.livedata.test
 import com.percivalruiz.cartrack.data.User
-import com.percivalruiz.cartrack.db.AppDatabase
+import com.percivalruiz.cartrack.repository.SessionRepository
+import com.percivalruiz.cartrack.repository.UserRepository
+import com.percivalruiz.cartrack.ui.user.detail.UserDetailViewModel
+import com.percivalruiz.cartrack.ui.user.detail.UserDetailViewModel.Companion.USER_ID
+import io.mockk.*
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.*
-import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
-class UserDAOTest {
+class UserDetailViewModelTest {
 
   @get:Rule
   val instantExecutorRule = InstantTaskExecutorRule()
 
   private val dispatcher = TestCoroutineDispatcher()
 
-  private lateinit var db: AppDatabase
+  private lateinit var underTest: UserDetailViewModel
+
+  @MockK
+  private lateinit var repo: UserRepository
+
+  @MockK
+  private lateinit var handle: SavedStateHandle
 
   @Before
   fun setup() {
+    MockKAnnotations.init(this)
     Dispatchers.setMain(dispatcher)
-    db = Room.inMemoryDatabaseBuilder(
-      InstrumentationRegistry.getContext(),
-      AppDatabase::class.java
-    )
-      .allowMainThreadQueries()
-      .build()
   }
 
   @After
   fun tearDown() {
     Dispatchers.resetMain()
-    db.close()
+    dispatcher.cleanupTestCoroutines()
   }
 
   @Test
-  fun insertAndGetUserById() = runBlockingTest {
+  fun `Should be able to get user using user id`() {
     val user = createUser()
-    db.userDAO().insert(user)
-    val userDB = async {
-      db.userDAO().getById(1)
-    }
+    coEvery { repo.getUser(1) } returns flow { emit(user) }
 
-    userDB.await().let {
-      Assert.assertEquals(user, it)
-    }
+    every { handle.contains(USER_ID) } returns false
+
+    every {
+      handle.getLiveData<Long>(USER_ID)
+    } returns MutableLiveData(1)
+
+    every {
+      handle.set(USER_ID, any<Long>())
+    } just Runs
+
+    underTest = UserDetailViewModel(handle, repo)
+    underTest.getUser(1)
+
+    underTest.user.asLiveData().test().assertValue(user)
+
   }
-
 
   private fun createUser(): User {
     return User(

@@ -46,6 +46,10 @@ android {
       exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
     }
   }
+
+  defaultConfig {
+    vectorDrawables.useSupportLibrary = true
+  }
 }
 
 dependencies {

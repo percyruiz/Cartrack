@@ -65,7 +65,6 @@ class UserListFragment : Fragment() {
     viewLifecycleOwner.lifecycleScope.launch {
       adapter.loadStateFlow.collectLatest { loadStates ->
         binding.swiperefresh.isRefreshing = loadStates.refresh is LoadState.Loading
-        binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
         binding.retryButton.isVisible =
           loadStates.refresh !is LoadState.Loading && adapter.itemCount == 0 && loadStates.refresh is LoadState.Error
 

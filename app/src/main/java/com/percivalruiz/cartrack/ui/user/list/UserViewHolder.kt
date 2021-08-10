@@ -29,6 +29,7 @@ class UserViewHolder(
   }
 
   fun bind(user: User?) {
+    this.user = user
     user?.apply {
       this@UserViewHolder.name.text = name
       this@UserViewHolder.username.text = username
