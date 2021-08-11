@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -56,6 +57,9 @@ class UserDetailFragment : Fragment(), OnMapReadyCallback {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
+    binding.noUserDetail.isVisible = args.id == NO_USER
+    binding.content.isVisible = args.id != NO_USER
 
     viewLifecycleOwner.lifecycleScope.launchWhenCreated {
       // Get user id from navArgs
@@ -133,5 +137,9 @@ class UserDetailFragment : Fragment(), OnMapReadyCallback {
         Manifest.permission.ACCESS_FINE_LOCATION
       )
     }
+  }
+
+  companion object {
+    private const val NO_USER = -1L
   }
 }

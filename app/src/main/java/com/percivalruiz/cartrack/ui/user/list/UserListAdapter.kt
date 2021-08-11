@@ -12,7 +12,7 @@ import com.percivalruiz.cartrack.data.User
  * Extends [PagingDataAdapter] that handles paging using [Paging3] library
  */
 class UserListAdapter(
-  private val onClick: (id: Long) -> Unit
+  var onClick: (id: Long) -> Unit
 ) : PagingDataAdapter<UIModel, RecyclerView.ViewHolder>(ITEM_COMP) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
