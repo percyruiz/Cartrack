@@ -49,13 +49,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
+        android:autoLink="email"
         android:textAppearance="?textAppearanceBody2"
         app:layout_constraintBottom_toBottomOf="@id/email_imageview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/email_imageview"
         app:layout_constraintTop_toTopOf="@id/email_imageview"
         tools:text="percivalruiz@gmail.com"
-        android:autoLink="email"
         />
 
     <ImageView
@@ -73,13 +73,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
+        android:autoLink="phone"
         android:textAppearance="?textAppearanceBody2"
         app:layout_constraintBottom_toBottomOf="@id/phone_imageview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/phone_imageview"
         app:layout_constraintTop_toTopOf="@id/phone_imageview"
         tools:text="1-770-736-8031 x56442"
-        android:autoLink="phone"
         />
 
     <ImageView
@@ -231,6 +231,29 @@
         app:layout_constraintStart_toEndOf="@id/address_imageview"
         app:layout_constraintTop_toBottomOf="@+id/work_bs"
         tools:text="Kulas Light, Apt. 556, Gwenborough, 92998-3874"
+        />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address"
+        />
+
+    <Button
+        android:enabled="false"
+        android:id="@+id/marker_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="false"
+        tools:text = "Check out blah's location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map"
         />
 
 
