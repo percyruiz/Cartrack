@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="8dp"
+    android:background="?selectableItemBackground"
+    android:layout_height="wrap_content">
+
+  <TextView
+      android:id="@+id/name"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      tools:text="name"
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      />
+
+  <TextView
+      android:id="@+id/username"
+      app:layout_constraintTop_toBottomOf="@id/name"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      tools:text="username"
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      />
+
+  <TextView
+      android:id="@+id/email"
+      app:layout_constraintTop_toBottomOf="@id/username"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      tools:text="email"
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      />
+
+  <TextView
+      android:id="@+id/phone"
+      app:layout_constraintTop_toBottomOf="@id/email"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      tools:text="phone"
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

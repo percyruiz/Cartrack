@@ -1,0 +1,278 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/no_user_detail"
+        android:textAppearance="?textAppearanceHeadline5"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:text="@string/select_user_from_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        >
+
+      <ImageView
+          android:id="@+id/username_imageview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ic_username"
+          />
+
+      <TextView
+          android:id="@+id/username"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="16dp"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintBottom_toBottomOf="@id/username_imageview"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/username_imageview"
+          app:layout_constraintTop_toTopOf="@id/username_imageview"
+          tools:text="tsikin"
+          />
+
+      <ImageView
+          android:id="@+id/email_imageview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/username_imageview"
+          app:srcCompat="@drawable/ic_email"
+          />
+
+      <TextView
+          android:id="@+id/email"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="16dp"
+          android:autoLink="email"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintBottom_toBottomOf="@id/email_imageview"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/email_imageview"
+          app:layout_constraintTop_toTopOf="@id/email_imageview"
+          tools:text="percivalruiz@gmail.com"
+          />
+
+      <ImageView
+          android:id="@+id/phone_imageview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/email_imageview"
+          app:srcCompat="@drawable/ic_phone"
+          />
+
+      <TextView
+          android:id="@+id/phone"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="16dp"
+          android:autoLink="phone"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintBottom_toBottomOf="@id/phone_imageview"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/phone_imageview"
+          app:layout_constraintTop_toTopOf="@id/phone_imageview"
+          tools:text="1-770-736-8031 x56442"
+          />
+
+      <ImageView
+          android:id="@+id/website_imageview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/phone_imageview"
+          app:srcCompat="@drawable/ic_website"
+          />
+
+      <TextView
+          android:id="@+id/website"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="16dp"
+          android:autoLink="web"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintBottom_toBottomOf="@id/website_imageview"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/website_imageview"
+          app:layout_constraintTop_toTopOf="@id/website_imageview"
+          tools:text="hildegard.org"
+          />
+
+      <ImageView
+          android:id="@+id/work_imageview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/website_imageview"
+          app:srcCompat="@drawable/ic_work"
+          />
+
+      <TextView
+          android:id="@+id/work_details_label"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="16dp"
+          android:autoLink="web"
+          android:text="@string/work_details"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintBottom_toBottomOf="@id/work_imageview"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/work_imageview"
+          app:layout_constraintTop_toTopOf="@id/work_imageview"
+          />
+
+      <TextView
+          android:id="@+id/work_name_label"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="@string/work_name"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/work_imageview"
+          />
+
+      <TextView
+          android:id="@+id/work_name"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/barrier"
+          app:layout_constraintTop_toTopOf="@id/work_name_label"
+          tools:text="Romaguera-Crona"
+          />
+
+      <TextView
+          android:id="@+id/work_catch_phrase_label"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="@string/work_catch_phrase"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/work_name"
+          />
+
+      <TextView
+          android:id="@+id/work_catch_phrase"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/barrier"
+          app:layout_constraintTop_toBottomOf="@id/work_name"
+          tools:text="Multi-layered client-server neural-net asdasdadasdadadadasdasasdasdadaasdad"
+          />
+
+      <TextView
+          android:id="@+id/work_bs_label"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="@string/work_bs"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/work_catch_phrase"
+          />
+
+      <TextView
+          android:id="@+id/work_bs"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/barrier"
+          app:layout_constraintTop_toBottomOf="@id/work_catch_phrase"
+          tools:text="Multi-layered client-server neural-net asdasdadasdadadadasdasasdasdadaasdad"
+          />
+
+      <androidx.constraintlayout.widget.Barrier
+          android:id="@+id/barrier"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:barrierDirection="end"
+          app:constraint_referenced_ids="work_name_label,work_catch_phrase_label,work_bs_label"
+          />
+
+      <ImageView
+          android:id="@+id/address_imageview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/work_bs"
+          app:srcCompat="@drawable/ic_address"
+          />
+
+      <TextView
+          android:id="@+id/address"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="21dp"
+          android:autoLink="web"
+          android:textAppearance="?textAppearanceBody2"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/address_imageview"
+          app:layout_constraintTop_toBottomOf="@+id/work_bs"
+          tools:text="Kulas Light, Apt. 556, Gwenborough, 92998-3874"
+          />
+
+      <fragment
+          android:id="@+id/map"
+          android:name="com.google.android.gms.maps.SupportMapFragment"
+          android:layout_width="match_parent"
+          android:layout_height="300dp"
+          android:layout_marginTop="16dp"
+          app:layout_constraintStart_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/address"
+          />
+
+      <Button
+          android:id="@+id/marker_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:enabled="false"
+          android:textAllCaps="false"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/map"
+          tools:text="Check out blah's location"
+          />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </RelativeLayout>
+</ScrollView>
