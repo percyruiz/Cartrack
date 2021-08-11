@@ -31,7 +31,7 @@ class UserDetailViewModel(
 
   /**
    * Observe changes from the handle as a [LiveData] object
-   * This call iTunes service's search method on [LiveData] updates
+   * This call API service's get users method on [LiveData] updates
    */
   @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
   val user = handle.getLiveData<Long>(USER_ID)
