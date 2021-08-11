@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.percivalruiz.cartrack.R
 import com.percivalruiz.cartrack.databinding.FragmentUserListBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.flow.collectLatest
@@ -34,6 +37,15 @@ class UserListFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     _binding = FragmentUserListBinding.inflate(inflater, container, false)
+
+    val isTablet = requireContext().resources.getBoolean(R.bool.isTablet)
+
+    when {
+      isTablet -> {
+        displayMasterDetailLayout(binding.root)
+      }
+    }
+
     return binding.root
   }
 
@@ -75,6 +87,15 @@ class UserListFragment : Fragment() {
           ).show()
         }
       }
+    }
+  }
+
+  private fun displayMasterDetailLayout(view: View) {
+    val navHostFragment =
+      childFragmentManager.findFragmentById(R.id.nav_detail_fragment) as NavHostFragment
+
+    adapter.onClick = { id ->
+      navHostFragment.navController.navigate(R.id.userDetailFragment, bundleOf("id" to id))
     }
   }
 }

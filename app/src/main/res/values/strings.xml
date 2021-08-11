@@ -10,4 +10,5 @@
   <string name="work_catch_phrase">catch phrase: </string>
   <string name="work_bs">bs: </string>
   <string name="work_details">Company Details</string>
+  <string name="select_user_from_list">Select a user from the list on the left.</string>
 </resources>
