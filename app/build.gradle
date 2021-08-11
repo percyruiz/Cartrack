@@ -4,6 +4,7 @@ plugins {
   id 'kotlin-android-extensions'
   id 'kotlin-kapt'
   id 'androidx.navigation.safeargs.kotlin'
+  id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -119,5 +120,10 @@ dependencies {
   testImplementation 'com.jraska.livedata:testing-ktx:1.1.2'
   testImplementation 'androidx.test.ext:junit:1.1.2'
 
+  // Lifecycle
   implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha03'
+
+  // Location
+  implementation 'com.google.android.gms:play-services-location:18.0.0'
+  implementation 'com.google.android.gms:play-services-maps:17.0.1'
 }

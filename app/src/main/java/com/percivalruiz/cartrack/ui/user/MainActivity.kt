@@ -2,8 +2,10 @@ package com.percivalruiz.cartrack.ui.user
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,8 +14,10 @@ import androidx.navigation.ui.navigateUp
 import com.percivalruiz.cartrack.R
 import com.percivalruiz.cartrack.databinding.ActivityMainBinding
 import com.percivalruiz.cartrack.ui.login.LoginActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 /**
  * Screen containing user list and detail fragments
@@ -24,10 +28,12 @@ class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainBinding
   private lateinit var appBarConfig: AppBarConfiguration
   private val viewModel: MainViewModel by viewModel()
+  private var isBackButtonVisible = false
 
   @InternalCoroutinesApi
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
     binding = ActivityMainBinding.inflate(layoutInflater)
     val view = binding.root
     setContentView(view)
@@ -38,18 +44,26 @@ class MainActivity : AppCompatActivity() {
       appBarConfig = AppBarConfiguration(graph)
 
       addOnDestinationChangedListener { _, destination, _ ->
-        when (destination.id) {
+        isBackButtonVisible = when (destination.id) {
           R.id.userListFragment -> {
-            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            toolbar.title = resources.getString(R.string.app_name)
+            false
           }
           R.id.userDetailFragment -> {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            true
           }
+          else -> false
         }
+        supportActionBar?.setDisplayHomeAsUpEnabled(isBackButtonVisible)
       }
     }
 
     setSupportActionBar(binding.toolbar)
+
+    if (savedInstanceState != null) {
+      isBackButtonVisible = savedInstanceState.getBoolean(BACK_BUTTON_STATE)
+      supportActionBar?.setDisplayHomeAsUpEnabled(isBackButtonVisible)
+    }
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,5 +85,14 @@ class MainActivity : AppCompatActivity() {
 
   override fun onSupportNavigateUp(): Boolean {
     return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfig)
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    outState.putBoolean(BACK_BUTTON_STATE, isBackButtonVisible)
+    super.onSaveInstanceState(outState)
+  }
+
+  companion object {
+    private const val BACK_BUTTON_STATE = "com.percivalruiz.cartrack.backButtonState"
   }
 }
